@@ -77,6 +77,7 @@ webpackJsonp([1,4],Array(257).concat([
 	            show: false,
 	            timer: null,
 	            ctx: null,
+	            src: null,
 	            formData: {
 	                gender: '男',
 	                name: '拾文',
@@ -201,22 +202,11 @@ webpackJsonp([1,4],Array(257).concat([
 	                        )
 	                    )
 	                ),
-	                _react2['default'].createElement('canvas', { id: 'canvas', style: { display: this.state.show ? 'block' : 'none' }, ref: 'canvas', width: '484', height: '640', style: { display: this.state.show ? 'block' : 'none' } }),
+	                _react2['default'].createElement('canvas', { id: 'canvas', style: { display: 'none' }, ref: 'canvas', width: '484', height: '640' }),
+	                _react2['default'].createElement('img', { style: { display: this.state.show ? 'block' : 'none', width: '100%' }, src: this.state.src, alt: '' }),
 	                _react2['default'].createElement(
 	                    'div',
 	                    { style: { display: this.state.show ? 'block' : 'none' } },
-	                    _react2['default'].createElement(
-	                        ButtonArea,
-	                        null,
-	                        _react2['default'].createElement(
-	                            Button,
-	                            { type: 'primary',
-	                                onClick: function () {
-	                                    _this.saveImg();
-	                                } },
-	                            '保存图片'
-	                        )
-	                    ),
 	                    _react2['default'].createElement(
 	                        ButtonArea,
 	                        null,
@@ -269,16 +259,15 @@ webpackJsonp([1,4],Array(257).concat([
 	        key: 'submit',
 	        value: function submit(e) {
 	            this.addText(this.state.ctx, this.state.formData);
-	            var a = this.refs.location;
-	            window.x = e;
-	            console.log(a.value);
+	            this.saveImg();
 	        }
 	    }, {
 	        key: 'saveImg',
 	        value: function saveImg() {
 	            var w = 484;
 	            var h = 640;
-	            _utilsCanvas2img2['default'].saveAsJPEG(this.refs.canvas, w, h);
+	            var img = _utilsCanvas2img2['default'].convertToJPEG(this.refs.canvas, w, h);
+	            this.setState({ src: img.src });
 	        }
 	    }, {
 	        key: 'addText',
