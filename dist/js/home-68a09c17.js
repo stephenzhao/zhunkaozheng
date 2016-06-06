@@ -1,4 +1,4 @@
-webpackJsonp([1,3],Array(257).concat([
+webpackJsonp([1,4],Array(257).concat([
 /* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -76,7 +76,12 @@ webpackJsonp([1,3],Array(257).concat([
 	        this.state = {
 	            show: false,
 	            timer: null,
-	            ctx: null
+	            ctx: null,
+	            formData: {
+	                gender: '男',
+	                name: '拾文',
+	                location: '腾冲市第一中学'
+	            }
 	        };
 	    }
 
@@ -84,6 +89,7 @@ webpackJsonp([1,3],Array(257).concat([
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            this.show();
+	            window.form = this.refs.form;
 	        }
 	    }, {
 	        key: 'render',
@@ -95,7 +101,11 @@ webpackJsonp([1,3],Array(257).concat([
 	                { title: '生成准考证', className: 'cell' },
 	                _react2['default'].createElement(
 	                    'form',
-	                    { style: { display: this.state.show ? 'none' : 'block' } },
+	                    { ref: 'form', style: { display: this.state.show ? 'none' : 'block' },
+	                        onSubmit: function (e) {
+	                            e.preventDefault();
+	                            _this.submit(e);
+	                        } },
 	                    _react2['default'].createElement(
 	                        Form,
 	                        null,
@@ -114,7 +124,7 @@ webpackJsonp([1,3],Array(257).concat([
 	                            _react2['default'].createElement(
 	                                CellBody,
 	                                null,
-	                                _react2['default'].createElement(Input, { type: 'text', placeholder: '请输入姓名' })
+	                                _react2['default'].createElement(Input, { type: 'text', name: 'name', onChange: this.handleChange.bind(this), placeholder: '请输入姓名' })
 	                            )
 	                        )
 	                    ),
@@ -137,7 +147,9 @@ webpackJsonp([1,3],Array(257).concat([
 	                            _react2['default'].createElement(
 	                                CellFooter,
 	                                null,
-	                                _react2['default'].createElement(Radio, { name: 'radio1', value: '1', defaultChecked: true })
+	                                _react2['default'].createElement(Radio, { onChange: function (e) {
+	                                        _this.changeFn(e);
+	                                    }, name: 'gender', value: '1', defaultChecked: true })
 	                            )
 	                        ),
 	                        _react2['default'].createElement(
@@ -151,7 +163,9 @@ webpackJsonp([1,3],Array(257).concat([
 	                            _react2['default'].createElement(
 	                                CellFooter,
 	                                null,
-	                                _react2['default'].createElement(Radio, { name: 'radio1', value: '2' })
+	                                _react2['default'].createElement(Radio, { onChange: function (e) {
+	                                        _this.changeFn(e);
+	                                    }, name: 'gender', value: '2' })
 	                            )
 	                        )
 	                    ),
@@ -173,7 +187,7 @@ webpackJsonp([1,3],Array(257).concat([
 	                            _react2['default'].createElement(
 	                                CellBody,
 	                                null,
-	                                _react2['default'].createElement(Input, { type: 'text', placeholder: '比如：腾冲市第一中学' })
+	                                _react2['default'].createElement(Input, { ref: 'location', onChange: this.handleChange.bind(this), name: 'location', type: 'text', placeholder: '比如：腾冲市第一中学' })
 	                            )
 	                        )
 	                    ),
@@ -182,9 +196,7 @@ webpackJsonp([1,3],Array(257).concat([
 	                        null,
 	                        _react2['default'].createElement(
 	                            Button,
-	                            { type: 'primary', onClick: function (e) {
-	                                    _this.addText(_this.state.ctx);
-	                                } },
+	                            { type: 'primary' },
 	                            '确认生成'
 	                        )
 	                    )
@@ -212,13 +224,36 @@ webpackJsonp([1,3],Array(257).concat([
 	            this.setState({ ctx: ctx });
 	        }
 	    }, {
+	        key: 'changeFn',
+	        value: function changeFn(e) {
+	            var formData = this.state.formData;
+	            var gender = ['', '男', '女'];
+	            formData['gender'] = gender[e.currentTarget.value];
+	            this.setState({ formData: formData });
+	        }
+	    }, {
+	        key: 'handleChange',
+	        value: function handleChange(event) {
+	            var formData = this.state.formData;
+	            formData[event.target.name] = event.target.value;
+	            this.setState({ formData: formData });
+	        }
+	    }, {
+	        key: 'submit',
+	        value: function submit(e) {
+	            this.addText(this.state.ctx, this.state.formData);
+	            var a = this.refs.location;
+	            window.x = e;
+	            console.log(a.value);
+	        }
+	    }, {
 	        key: 'addText',
-	        value: function addText(ctx) {
-	            var room = '01';
-	            var name = '赵飞';
-	            var gender = '男';
-	            var location = '腾冲一中';
-	            var seat = 25;
+	        value: function addText(ctx, formData) {
+	            var room = Math.ceil(Math.random() * 40);
+	            var name = formData.name;
+	            var gender = formData.gender;
+	            var location = formData.location;
+	            var seat = Math.ceil(Math.random() * 60);
 	            this.setState({ show: true });
 	            if (ctx) {
 	                ctx.font = "28px 宋体";
@@ -6966,122 +7001,6 @@ webpackJsonp([1,3],Array(257).concat([
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "assets/images/base-4bee5605.jpg";
-
-/***/ },
-/* 339 */,
-/* 340 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	// only import in Header
-
-	var _reactRouter = __webpack_require__(158);
-
-	var _style = __webpack_require__(341);
-
-	var _style2 = _interopRequireDefault(_style);
-
-	var About = (function (_React$Component) {
-	    _inherits(About, _React$Component);
-
-	    function About() {
-	        _classCallCheck(this, About);
-
-	        _get(Object.getPrototypeOf(About.prototype), 'constructor', this).apply(this, arguments);
-	    }
-
-	    _createClass(About, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2['default'].createElement(
-	                'div',
-	                { className: _style2['default'].about },
-	                _react2['default'].createElement(
-	                    'div',
-	                    { className: _style2['default'].desc },
-	                    'Demo powered by v2rx'
-	                ),
-	                _react2['default'].createElement(
-	                    'ul',
-	                    null,
-	                    _react2['default'].createElement(
-	                        'li',
-	                        null,
-	                        _react2['default'].createElement(
-	                            _reactRouter.Link,
-	                            { to: '/', className: _style2['default'].link },
-	                            'Back Home'
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return About;
-	})(_react2['default'].Component);
-
-	exports['default'] = About;
-	module.exports = exports['default'];
-
-/***/ },
-/* 341 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(342);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(334)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../v2rx/node_modules/css-loader/index.js!./../../../../v2rx/node_modules/autoprefixer-loader/index.js!./../../../../v2rx/node_modules/sass-loader/index.js?includePaths[]=/Users/damon/www/react_demo/gaokao/node_modules&includePaths[]=/Users/damon/www/react_demo/gaokao/src!./style.scss", function() {
-				var newContent = require("!!./../../../../v2rx/node_modules/css-loader/index.js!./../../../../v2rx/node_modules/autoprefixer-loader/index.js!./../../../../v2rx/node_modules/sass-loader/index.js?includePaths[]=/Users/damon/www/react_demo/gaokao/node_modules&includePaths[]=/Users/damon/www/react_demo/gaokao/src!./style.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 342 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(333)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".about {\n  padding: 10px; }\n  .about .desc {\n    border: 1px solid #efefef;\n    padding: 10px;\n    background-color: #efefef;\n    margin-bottom: 10px; }\n  .about .link {\n    float: right; }\n", ""]);
-
-	// exports
-
 
 /***/ }
 ]));
