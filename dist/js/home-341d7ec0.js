@@ -201,7 +201,35 @@ webpackJsonp([1,4],Array(257).concat([
 	                        )
 	                    )
 	                ),
-	                _react2['default'].createElement('canvas', { id: 'canvas', style: { display: this.state.show ? 'block' : 'none' }, ref: 'canvas', width: '494', height: '860', style: { display: this.state.show ? 'block' : 'none' } })
+	                _react2['default'].createElement('canvas', { id: 'canvas', style: { display: this.state.show ? 'block' : 'none' }, ref: 'canvas', width: '484', height: '640', style: { display: this.state.show ? 'block' : 'none' } }),
+	                _react2['default'].createElement(
+	                    'div',
+	                    { style: { display: this.state.show ? 'block' : 'none' } },
+	                    _react2['default'].createElement(
+	                        ButtonArea,
+	                        null,
+	                        _react2['default'].createElement(
+	                            Button,
+	                            { type: 'primary',
+	                                onClick: function () {
+	                                    _this.saveImg();
+	                                } },
+	                            '保存图片'
+	                        )
+	                    ),
+	                    _react2['default'].createElement(
+	                        ButtonArea,
+	                        null,
+	                        _react2['default'].createElement(
+	                            Button,
+	                            { type: 'default',
+	                                onClick: function () {
+	                                    window.location.reload();
+	                                } },
+	                            '重新生成'
+	                        )
+	                    )
+	                )
 	            );
 	        }
 	    }, {
@@ -209,7 +237,7 @@ webpackJsonp([1,4],Array(257).concat([
 	        value: function drawImg(ctx) {
 	            var img = new Image();
 	            img.onload = function () {
-	                ctx.scale(0.45, 0.45);
+	                ctx.scale(0.6, 0.6);
 	                ctx.drawImage(img, 0, 0);
 	            };
 	            img.src = _assetsImagesBaseJpg2['default'];
@@ -219,7 +247,6 @@ webpackJsonp([1,4],Array(257).concat([
 	        value: function show() {
 	            var canvas = this.refs.canvas;
 	            var ctx = canvas.getContext('2d');
-
 	            this.drawImg(ctx);
 	            this.setState({ ctx: ctx });
 	        }
@@ -245,6 +272,13 @@ webpackJsonp([1,4],Array(257).concat([
 	            var a = this.refs.location;
 	            window.x = e;
 	            console.log(a.value);
+	        }
+	    }, {
+	        key: 'saveImg',
+	        value: function saveImg() {
+	            var w = 484;
+	            var h = 640;
+	            _utilsCanvas2img2['default'].saveAsJPEG(this.refs.canvas, w, h);
 	        }
 	    }, {
 	        key: 'addText',
