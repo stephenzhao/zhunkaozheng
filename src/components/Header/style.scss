@@ -1,0 +1,20 @@
+$active-color: #286090;
+
+.nav {
+    display: inline-block;
+    padding: 10px;
+
+    .nav-item {
+        display: inline;
+        margin-left: 10px;
+
+        a {
+            padding: 3px 10px;
+        }
+    }
+
+    .nav-item.active a {
+        background-color: $active-color;
+        color: white;
+    }
+}
