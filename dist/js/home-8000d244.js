@@ -281,11 +281,11 @@ webpackJsonp([1,4],Array(257).concat([
 	            if (ctx) {
 	                ctx.font = "28px 宋体";
 	                ctx.fillStyle = "#000";
-	                ctx.fillText(name, 410, 420);
-	                ctx.fillText(gender, 640, 420);
-	                ctx.fillText(location, 410, 500);
-	                ctx.fillText(room, 210, 800);
-	                ctx.fillText(seat, 210, 875);
+	                ctx.fillText(name, 410, 415);
+	                ctx.fillText(gender, 640, 415);
+	                ctx.fillText(location, 410, 485);
+	                ctx.fillText(room, 210, 795);
+	                ctx.fillText(seat, 210, 870);
 	            }
 	        }
 	    }]);
