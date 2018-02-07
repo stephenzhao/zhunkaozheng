@@ -77,6 +77,7 @@ module.exports = {
     // custom default scss dir
     "scss": "scss",
 
+
     // switch template ES mode, ['es5' or 'es6']
     "esmode": "es6",
 
